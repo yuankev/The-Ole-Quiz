@@ -1,0 +1,41 @@
+function firstExample () {
+
+    for(;;) {
+    var x = prompt("Enter number of days");
+    x = parseInt(x);
+    if (x>0 && x<30) break;
+    else alert("Enter number between 0 and 30")
+
+    }
+   
+
+    var yourDateToGo2 = new Date();
+    yourDateToGo2.setDate(yourDateToGo2.getDate() + x);
+
+    var timing2 = setInterval(
+  function () {
+
+    var currentDate2 = new Date().getTime();
+    var timeLeft2 = yourDateToGo2 - currentDate2; 
+
+    var days2 = Math.floor(timeLeft2 / (1000 * 60 * 60 * 24));
+    if (days2 < 10) days2="0"+days2; 
+    var hours2 = Math.floor((timeLeft2 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    if (hours2 < 10) hours2="0"+hours2;
+    var minutes2 = Math.floor((timeLeft2 % (1000 * 60 * 60)) / (1000 * 60));  
+    if (minutes2 < 10) minutes2="0"+minutes2;
+    var seconds2 = Math.floor((timeLeft2 % (1000 * 60)) / 1000);
+    if (seconds2 < 10) seconds2="0"+seconds2;
+
+    document.getElementById("countdown2").innerHTML = days2 + "d " + hours2 + "h " + minutes2 + "m " + seconds2 + "s";  
+    
+
+    if (timeLeft2 <= 0) {
+      clearInterval(timing2);
+      document.getElementById("countdown2").innerHTML = "It's over"; 
+      
+    }
+  }, 1000);
+
+  }
+document.getElementById('btnId').addEventListener('click', firstExample);
